@@ -53,15 +53,14 @@ var Background = [
   fAccessories = ['Earrings', 'Necklace'],
   fFlower = ['Red-Purple', 'Yellow-Orange', 'Purple-Blue'],
   Teacup = ['Singapore'],
-  s = 340,
-  cnt = 1;
-
+  s = 340;
 async function dd(s1, s2, s3, s4) {
   r = ran(s3.length);
   if (r + s2 <= s3.length) {
     txt += `{"trait_type":"${s1}","value":"${s3[r]}"},`;
     img = new Image();
     img.src = `https://aloycwl.github.io/twc_frontend/img/gen1.png`;
+    img.crossOrigin = 'Anonymous';
     return new Promise((resolve) => {
       img.onload = function () {
         cd.drawImage(img, r * s, s4 * s, s, s, 0, 0, 350, 350);

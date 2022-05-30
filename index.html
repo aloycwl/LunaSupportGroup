@@ -11,7 +11,7 @@
   </head>
   <body>
     <h1>Luna Commemorative Art (LCA)</h1>
-    Mint:
+    Mint: <a id="loading"></a>
     <div id="mintBtns"></div>
     <div id="nfts"></div>
   </body>
@@ -21,24 +21,46 @@
     var loaded,
       src = 'https://ipfs.io/ipfs/';
     CHAIN = 4;
-    async function mint() {
-      drawLCA();
-      //display artwork
-      return;
-      await contract.MINT(img[0][1]).send({
-        from: acct,
-        value: 0.0e18,
-      });
-      location.reload();
-    }
-    async function REVEAL(id) {
-      sex = Math.floor(Math.random() * 2) + 1;
-      txt = '"trait_type":"';
+    async function mint(n) {
+      waitTxt(1, 'loading');
+      cnt = 0;
+      count = await contract.count().call();
+      $('#nfts').html('');
       ipfs = IpfsApi({
         host: 'ipfs.infura.io',
         port: 5001,
         protocol: 'https',
       });
+      cidImg = new Array();
+      for (i = 0; i < n; i++) {
+        await drawLCA();
+        cidImg[i] = await uploadJson(await uploadImg(i));
+        count++;
+      }
+      await contract.MINT(img[0][1]).send({
+        from: acct,
+      });
+      waitTxt(0, 'loading');
+    }
+    async function uploadImg(i) {
+      reader = new FileReader();
+      b64 = atob(
+        document.getElementById(`can${i}`).toDataURL('image/png').split(',')[1]
+      );
+      n = b64.length;
+      u8 = new Uint8Array(n);
+      pro = await new Promise((d) => {
+        reader.onloadend = () => {
+          ipfs.add(ipfs.Buffer.from(reader.result)).then((files) => {
+            d(files);
+          });
+        };
+        while (n--) u8[n] = b64.charCodeAt(n);
+        reader.readAsArrayBuffer(new File([u8], ''));
+      });
+      return pro[0].hash;
+    }
+    async function uploadJson(i) {
       pro = await new Promise((d) => {
         reader = new FileReader();
         reader.onloadend = () => {
@@ -49,21 +71,13 @@
         reader.readAsArrayBuffer(
           new File(
             [
-              `{"name":"TWC #${id}","description":"We are a green chip NFT that gives passive income and many offline perks. Find another gender to breed your baby owl now!","image":"ipfs://${
-                img[gen][sex]
-              }","attributes":[{"display_type":"number",${txt}Generation","value":${gen}},{${txt}Gender","value":"${
-                sex == 0 ? 'Female' : 'Male'
-              }"},{${txt}Parent 1","value":"${
-                breed1 == null ? '' : 'TWC #' + breed1
-              }"},{${txt}Parent 2","value":"${
-                breed2 == null ? '' : 'TWC #' + breed2
-              }"},{"display_type":"date",${txt}Hatched on","value":${Date.now()}}]}`,
+              `{"name":"LCA #${count}","description":"Haha to those who have invested in LUNA","image":"ipfs://${i}"}`,
             ],
             'application/json'
           )
         );
       });
-      cid = pro[0].hash;
+      return pro[0].hash;
     }
     (async () => {
       await load(
