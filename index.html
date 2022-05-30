@@ -25,7 +25,7 @@
     CHAIN = 4;
     CS = 'https://aloycwl.github.io/lca_frontend/css/lca.css';
     async function mint(n) {
-      waitTxt(1, 'loading');
+      $('#loading').html('Fetching number...');
       cnt = 0;
       count = await contract.count().call();
       $('#nfts').html('');
@@ -35,15 +35,17 @@
         protocol: 'https',
       });
       cidImg = new Array();
+      $('#loading').html('Generating art...');
       for (i = 0; i < n; i++) {
         await drawLCA();
         cidImg[i] = await uploadJson(await uploadImg(i));
         count++;
       }
+      $('#loading').html('Minting...');
       await contract.MINT(cidImg).send({
         from: acct,
       });
-      waitTxt(0, 'loading');
+      $('#loading').html('Congratulation!');
       $('#nfts').show();
     }
     async function uploadImg(i) {
