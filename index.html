@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Luna Commemorative Art (LCA)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://aloycwl.github.io/js/cdn/jquery.min.js"></script>
+    <script src="https://aloycwl.github.io/js/cdn/ipfs-api.min.js"></script>
+    <script src="https://aloycwl.github.io/js/cdn/web3.min.js"></script>
+    <script src="https://aloycwl.github.io/js/cdn/web3ac.js"></script>
+  </head>
+  <body>
+    <h1>Luna Commemorative Art (LCA)</h1>
+    Mint:
+    <div id="mintBtns"></div>
+  </body>
+  <script>
+    for (i = 1; i < 11; i++)
+      $('#mintBtns').append(`<button onclick='mint(${i})'>${i}</button>`);
+    var loaded,
+      src = 'https://ipfs.io/ipfs/';
+    CHAIN = 4;
+    async function MINT() {
+      await contract.MINT(img[0][1]).send({
+        from: acct,
+        value: 0.0e18,
+      });
+      location.reload();
+    }
+    async function REVEAL(id) {
+      sex = Math.floor(Math.random() * 2) + 1;
+      txt = '"trait_type":"';
+      ipfs = IpfsApi({
+        host: 'ipfs.infura.io',
+        port: 5001,
+        protocol: 'https',
+      });
+      pro = await new Promise((d) => {
+        reader = new FileReader();
+        reader.onloadend = () => {
+          ipfs.add(ipfs.Buffer.from(reader.result)).then((files) => {
+            d(files);
+          });
+        };
+        reader.readAsArrayBuffer(
+          new File(
+            [
+              `{"name":"TWC #${id}","description":"We are a green chip NFT that gives passive income and many offline perks. Find another gender to breed your baby owl now!","image":"ipfs://${
+                img[gen][sex]
+              }","attributes":[{"display_type":"number",${txt}Generation","value":${gen}},{${txt}Gender","value":"${
+                sex == 0 ? 'Female' : 'Male'
+              }"},{${txt}Parent 1","value":"${
+                breed1 == null ? '' : 'TWC #' + breed1
+              }"},{${txt}Parent 2","value":"${
+                breed2 == null ? '' : 'TWC #' + breed2
+              }"},{"display_type":"date",${txt}Hatched on","value":${Date.now()}}]}`,
+            ],
+            'application/json'
+          )
+        );
+      });
+      cid = pro[0].hash;
+    }
+    (async () => {
+      await load(
+        [
+          {
+            inputs: [u6],
+            name: 'MINT',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [],
+            name: 'count',
+            outputs: [u1],
+            stateMutability: 'view',
+            type: 'function',
+          },
+        ],
+        '0x19e4Bd505127eeB8920104386E2828CB6A0e76c0'
+      );
+    })();
+    $(document).ready(
+      setInterval(async function () {
+        if (typeof ethereum != 'undefined') {
+          await web3.getAccounts().then((d) => {
+            if (d.length > 0) {
+              $('#root').show();
+              if (!loaded) {
+                loaded = true;
+              }
+            } else {
+              $('#root').hide();
+              $('#name').html(`<b>Whooli Hootie </b>`);
+              $('#mint').html('MINT ');
+            }
+          });
+        }
+      }, 1000)
+    );
+  </script>
+</html>
