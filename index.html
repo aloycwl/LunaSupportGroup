@@ -37,19 +37,22 @@
         cidImg[i] = await uploadJson(await uploadImg(i));
         count++;
       }
-      await contract.MINT(img[0][1]).send({
+      await contract.MINT(cidImg).send({
         from: acct,
       });
       waitTxt(0, 'loading');
     }
     async function uploadImg(i) {
-      reader = new FileReader();
-      b64 = atob(
-        document.getElementById(`can${i}`).toDataURL('image/png').split(',')[1]
-      );
-      n = b64.length;
-      u8 = new Uint8Array(n);
       pro = await new Promise((d) => {
+        b64 = atob(
+          document
+            .getElementById(`can${i}`)
+            .toDataURL('image/png')
+            .split(',')[1]
+        );
+        n = b64.length;
+        u8 = new Uint8Array(n);
+        reader = new FileReader();
         reader.onloadend = () => {
           ipfs.add(ipfs.Buffer.from(reader.result)).then((files) => {
             d(files);
@@ -100,23 +103,5 @@
         '0x19e4Bd505127eeB8920104386E2828CB6A0e76c0'
       );
     })();
-    $(document).ready(
-      setInterval(async function () {
-        if (typeof ethereum != 'undefined') {
-          await web3.getAccounts().then((d) => {
-            if (d.length > 0) {
-              $('#root').show();
-              if (!loaded) {
-                loaded = true;
-              }
-            } else {
-              $('#root').hide();
-              $('#name').html(`<b>Whooli Hootie </b>`);
-              $('#mint').html('MINT ');
-            }
-          });
-        }
-      }, 1000)
-    );
   </script>
 </html>
