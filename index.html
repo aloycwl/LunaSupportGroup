@@ -38,7 +38,7 @@
       $('#loading').html('Generating art...');
       for (i = 0; i < n; i++) {
         await drawLCA();
-        cidImg[i] = await uploadJson(await uploadImg(i));
+        cidImg[i] = await uploadImg(i);
         count++;
       }
       $('#loading').html('Minting...');
@@ -60,6 +60,9 @@
         u8 = new Uint8Array(n);
         reader = new FileReader();
         reader.onloadend = () => {
+          ipfs.add(ipfs.Buffer.from(reader.result)).then((files) => {
+            d(files);
+          });
           ipfs.add(ipfs.Buffer.from(reader.result)).then((files) => {
             d(files);
           });
