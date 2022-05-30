@@ -54,7 +54,7 @@ var Background = [
   fFlower = ['Red-Purple', 'Yellow-Orange', 'Purple-Blue'],
   Teacup = ['Singapore'],
   s = 340,
-  cnt = 0;
+  cnt = 1;
 
 async function dd(s1, s2, s3, s4) {
   r = ran(s3.length);
@@ -70,7 +70,7 @@ async function dd(s1, s2, s3, s4) {
     });
   }
 }
-async function load() {
+async function drawLCA() {
   $('#nfts').append(
     `<canvas id="can${cnt}" width="350" height="350" style="cursor: hand"></canvas>`
   );
