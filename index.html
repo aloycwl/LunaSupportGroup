@@ -19,7 +19,9 @@
     var loaded,
       src = 'https://ipfs.io/ipfs/';
     CHAIN = 4;
-    async function MINT() {
+    async function mint() {
+      //display artwork
+      return;
       await contract.MINT(img[0][1]).send({
         from: acct,
         value: 0.0e18,
