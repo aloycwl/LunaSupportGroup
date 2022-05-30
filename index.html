@@ -15,7 +15,7 @@
     <br /><br />
     <div id="mintBtns"></div>
     <br /><br />
-    <div id="nfts" ""></div>
+    <div id="nfts" class="hide"></div>
   </body>
   <script>
     for (i = 1; i < 11; i++)
@@ -44,6 +44,7 @@
         from: acct,
       });
       waitTxt(0, 'loading');
+      $('#nfts').show();
     }
     async function uploadImg(i) {
       pro = await new Promise((d) => {
