@@ -14,7 +14,7 @@
     <br /><br />
     <div>
       <button onclick="changeNum(-1)">-</button>
-      <button id="mintBtn" onlick="mint()">Mint 1</button>
+      <button id="mintBtn" onclick="mint()">Mint 1</button>
       <button onclick="changeNum(1)">+</button>
     </div>
     <br /><br />
@@ -55,7 +55,7 @@
         );
       }
       $('#loading').html('Minting...');
-      //await contract.MINT(cidImg).send(FA);
+      await contract.MINT(cidImg).send(FA);
       $('#loading').html('Congratulation!');
       $('#nfts').show();
     }
