@@ -23,10 +23,10 @@
     CHAIN = 4;
     CS = 'https://aloycwl.github.io/lsg_frontend/css/lsg.css';
     async function mint(n) {
+      $('#nfts').html('');
       $('#loading').html('Fetching number...');
       cnt = 0;
       count = await contract.count().call();
-      $('#nfts').html('');
       ipfs = IpfsApi({
         host: 'ipfs.infura.io',
         port: 5001,
