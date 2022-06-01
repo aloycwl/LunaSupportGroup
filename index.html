@@ -43,7 +43,7 @@
       ipfs = IpfsApi(IA);
       cidImg = new Array();
       $('#loading').html('Generating art...');
-      for (i = 0; i < n; i++) {
+      for (i = 0; i < num; i++) {
         await drawLCA();
         count++;
         cidImg.push(
