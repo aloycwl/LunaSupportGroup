@@ -35,20 +35,23 @@
     async function mint() {
       $('#nfts').html('');
       $('#loading').html('Fetching number...');
+      cnt = 0;
       count = await contract.count().call();
       ipfs = IpfsApi(IA);
       cidImg = new Array();
       $('#loading').html('Generating art...');
-      for (i = count; i < count + num; i++) {
+      for (i = 0; i < num; i++) {
         await drawLCA();
-        count++;
+
+        console.log(count + parseInt(i));
         cidImg.push(
           await uploadJson(
             `{"name":"LCA #${count}","description":"Haha to those who have invested in LUNA","image":"ipfs://${await uploadImg(
-              i
+              parseInt(count) + parseInt(i)
             )}",${txt}}`
           )
         );
+        count++;
       }
       $('#loading').html('Minting...');
       await contract.MINT(cidImg).send(FA);
