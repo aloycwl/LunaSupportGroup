@@ -39,7 +39,7 @@
       ipfs = IpfsApi(IA);
       cidImg = new Array();
       $('#loading').html('Generating art...');
-      for (i = 0; i < num; i++) {
+      for (i = count; i < count + num; i++) {
         await drawLCA();
         count++;
         cidImg.push(
@@ -51,7 +51,7 @@
         );
       }
       $('#loading').html('Minting...');
-      //await contract.MINT(cidImg).send(FA);
+      await contract.MINT(cidImg).send(FA);
       $('#loading').html('Congratulation!');
       $('#nfts').show();
     }
