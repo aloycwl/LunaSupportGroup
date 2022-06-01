@@ -98,6 +98,3 @@ async function drawLCA() {
   $('#traits').append(txt.substring(0, txt.length - 1) + ']}');
   cnt++;
 }
-function ran(p) {
-  return Math.floor(Math.random() * p);
-}
