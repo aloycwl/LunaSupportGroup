@@ -48,27 +48,6 @@
       $('#loading').html('Congratulation!');
       $('#nfts').show();
     }
-    async function uploadImg(i) {
-      pro = await new Promise((d) => {
-        b64 = atob(
-          document
-            .getElementById(`can${i}`)
-            .toDataURL('image/png')
-            .split(',')[1]
-        );
-        n = b64.length;
-        u8 = new Uint8Array(n);
-        reader = new FileReader();
-        reader.onloadend = () => {
-          ipfs.add(ipfs.Buffer.from(reader.result)).then((files) => {
-            d(files);
-          });
-        };
-        while (n--) u8[n] = b64.charCodeAt(n);
-        reader.readAsArrayBuffer(new File([u8], ''));
-      });
-      return pro[0].hash;
-    }
     async function uploadJson(i) {
       pro = await new Promise((d) => {
         reader = new FileReader();
