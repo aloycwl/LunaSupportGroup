@@ -18,14 +18,13 @@
     <div id="nfts" class="hide"></div>
   </body>
   <script>
-    for (i = 1; i < 11; i++)
+    for (i = 1; i < 6; i++)
       $('#mintBtns').append(`<button onclick='mint(${i})'>${i}</button>`);
-    var loaded,
-      src = 'https://ipfs.io/ipfs/';
     CHAIN = 4;
     CS = 'https://aloycwl.github.io/lsg_frontend/css/lsg.css';
     async function mint(n) {
       $('#loading').html('Fetching number...');
+      cnt = 0;
       count = await contract.count().call();
       $('#nfts').html('');
       ipfs = IpfsApi({
@@ -33,15 +32,17 @@
         port: 5001,
         protocol: 'https',
       });
+      cidImg = new Array();
+      $('#loading').html('Generating art...');
       for (i = 0; i < n; i++) {
+        await drawLCA();
+        cidImg[i] = await uploadImg(i);
         count++;
-        $('#loading').html('Generating art...');
-        uri = await uploadJson(await uploadImg(i));
-        $('#loading').html('Minting...');
-        await contract.MINT(uri).send({
-          from: acct,
-        });
       }
+      $('#loading').html('Minting...');
+      await contract.MINT(cidImg).send({
+        from: acct,
+      });
       $('#loading').html('Congratulation!');
       $('#nfts').show();
     }
@@ -56,7 +57,7 @@
         reader.readAsArrayBuffer(
           new File(
             [
-              `{"name":"LSG #${count}","description":"Haha to those who have invested in LUNA","image":"ipfs://${i}"}`,
+              `{"name":"LCA #${count}","description":"Haha to those who have invested in LUNA","image":"ipfs://${i}"}`,
             ],
             'application/json'
           )
