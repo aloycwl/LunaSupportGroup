@@ -35,7 +35,6 @@
     async function mint() {
       $('#nfts').html('');
       $('#loading').html('Fetching number...');
-      cnt = 0;
       count = await contract.count().call();
       ipfs = IpfsApi(IA);
       cidImg = new Array();

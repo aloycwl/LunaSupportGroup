@@ -76,7 +76,7 @@ Balloon5 = [
   'Type 49',
   'Type 50',
 ];
-s = 1458;
+s = 350;
 async function dd(s1, s2, s3, s4) {
   r = ran(s3.length);
   if (r + s2 <= s3.length)
@@ -86,16 +86,18 @@ async function dd(s1, s2, s3, s4) {
       img.src = `https://aloycwl.github.io/lsg_frontend/img/lsgsprite.png`;
       img.crossOrigin = 'Anonymous';
       img.onload = function () {
-        cd.drawImage(img, r * s, s4 * s, s, s, 0, 0, 350, 350);
+        cd.drawImage(img, r * s, s4 * s, s, s, 0, 0, s, s);
         resolve();
       };
     });
 }
 async function drawLCA() {
-  $('#nfts').append(`<canvas id="can${cnt}"width="350"height="350"></canvas>`);
-  c = document.getElementById(`can${cnt}`);
+  $('#nfts').append(
+    `<canvas id="can${count}"width="${s}"height="${s}"></canvas>`
+  );
+  c = document.getElementById(`can${count}`);
   cd = c.getContext('2d');
-  cd.clearRect(0, 0, 350, 350);
+  cd.clearRect(0, 0, s, s);
   txt = '"attributes":[';
   await dd('Background', 0, Background, 1);
   balRan = ran(5);
@@ -122,5 +124,4 @@ async function drawLCA() {
   await dd('Hand', 0, Hand, 5);
   await dd('Hat', 0, Hat, 2);
   txt = txt.substring(0, txt.length - 1) + ']';
-  cnt++;
 }
