@@ -20,7 +20,10 @@
   </body>
   <script>
     $.getScript('js/generative.js', function () {});
-    $.getScript('https://aloycwl.github.io/js/cdn/ipfs-api.min.js', function () {});
+    $.getScript(
+      'https://aloycwl.github.io/js/cdn/ipfs-api.min.js',
+      function () {}
+    );
     num = 1;
     CHAIN = 4;
     CS = 'https://aloycwl.github.io/lsg_frontend/css/lsg.css';
@@ -45,17 +48,17 @@
       $('#loading').html('Generating art...');
       for (i = 0; i < num; i++) {
         await drawLCA();
-        count++;
+        /*count++;
         cidImg.push(
           await uploadJson(
             `{"name":"LCA #${count}","description":"Haha to those who have invested in LUNA","image":"ipfs://${await uploadImg(
               i
             )}",${txt}}`
           )
-        );
+        );*/
       }
       $('#loading').html('Minting...');
-      await contract.MINT(cidImg).send(FA);
+      //await contract.MINT(cidImg).send(FA);
       $('#loading').html('Congratulation!');
       $('#nfts').show();
     }
