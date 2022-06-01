@@ -40,11 +40,9 @@
       ipfs = IpfsApi(IA);
       cidImg = new Array();
       $('#loading').html('Generating art...');
-      for (i = count; i < count + num; i++) {
-        await drawLCA();
-
-        console.log(i);
-        await cidImg.push(
+      for (i = count; i < Number(count) + Number(num); i++) {
+        await drawLCA(i);
+        cidImg.push(
           await uploadJson(
             `{"name":"LCA #${i}","description":"Haha to those who have invested in LUNA","image":"ipfs://${await uploadImg(
               i

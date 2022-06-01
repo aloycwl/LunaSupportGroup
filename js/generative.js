@@ -80,11 +80,9 @@ async function dd(s1, s2, s3, s4) {
       };
     });
 }
-async function drawLCA() {
-  $('#nfts').append(
-    `<canvas id="can${count}"width="${s}"height="${s}"></canvas>`
-  );
-  c = document.getElementById(`can${count}`);
+async function drawLCA(i) {
+  $('#nfts').append(`<canvas id="can${i}"width="${s}"height="${s}"></canvas>`);
+  c = document.getElementById(`can${i}`);
   cd = c.getContext('2d');
   cd.clearRect(0, 0, s, s);
   txt = '"attributes":[';
