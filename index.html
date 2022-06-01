@@ -33,10 +33,12 @@
       for (i = 0; i < n; i++) {
         await drawLCA();
         count++;
-        cidImg[i] = await uploadJson(
-          `{"name":"LCA #${count}","description":"Haha to those who have invested in LUNA","image":"ipfs://${await uploadImg(
-            i
-          )}"}`
+        cidImg.push(
+          await uploadJson(
+            `{"name":"LCA #${count}","description":"Haha to those who have invested in LUNA","image":"ipfs://${await uploadImg(
+              i
+            )}"}`
+          )
         );
       }
       $('#loading').html('Minting...');
