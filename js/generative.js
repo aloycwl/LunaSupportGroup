@@ -98,14 +98,8 @@ async function drawLCA() {
   cd.clearRect(0, 0, 350, 350);
   txt = '"attributes":[';
   await dd('Background', 0, Background, 1);
-  await dd('Body', 0, Body, 0);
-  await dd('Hat', 0, Hat, 2);
-  await dd('Clothes', 0, Clothes, 4);
-  await dd('Neckwear', 0, Neckwear, 3);
-  await dd('Hand', 0, Hand, 5);
-  await dd('Glasses', 0, Glasses, 6);
   balRan = ran(5);
-  switch (expressbalRanion) {
+  switch (balRan) {
     case 1:
       await dd('Balloon', 0, Balloon1, 7);
       break;
@@ -121,6 +115,12 @@ async function drawLCA() {
     default:
       await dd('Balloon', 0, Balloon5, 11);
   }
+  await dd('Body', 0, Body, 0);
+  await dd('Clothes', 0, Clothes, 4);
+  await dd('Glasses', 0, Glasses, 6);
+  await dd('Hand', 0, Hand, 5);
+  await dd('Neckwear', 0, Neckwear, 3);
+  await dd('Hat', 0, Hat, 2);
   txt = txt.substring(0, txt.length - 1) + ']';
   cnt++;
 }
