@@ -28,14 +28,8 @@
     CHAIN = 4;
     CS = 'https://aloycwl.github.io/lsg_frontend/css/lsg.css';
     function changeNum(n) {
-      err = '';
-      if (num + n < 1) err = 'Cannot mint below 1';
-      if (num + n > 5) err = 'Cannot mint above 5';
-      if (err != '') {
-        $('#loading').html(err);
-        return;
-      }
       num += n;
+      num = num < 1 ? 5 : num > 5 ? 1 : num;
       $('#mintBtn').html('Mint ' + num);
     }
     async function mint() {
