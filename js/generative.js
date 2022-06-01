@@ -16,65 +16,54 @@ Clothes = ['Sweater', 'Vest', 'Eskimo', 'Doctor'];
 Neckwear = ['Furrowed', 'Loser Chain', 'Sailor Bow'];
 Hand = ['Poker Cards', 'Blank', 'Lighted Cigarette', 'Ice Cream'];
 Glasses = ['Cool', 'Star', 'Flower', 'Leaf'];
-Balloon1 = [
-  'Type 1',
-  'Type 2',
-  'Type 3',
-  'Type 4',
-  'Type 5',
-  'Type 6',
-  'Type 7',
-  'Type 8',
-  'Type 9',
-  'Type 10',
-];
+Balloon1 = ['|1', '|2', '|3', '|4', '|5', '|6', '|7', '|8', '|9', '|10'];
 Balloon2 = [
-  'Type 11',
-  'Type 12',
-  'Type 13',
-  'Type 14',
-  'Type 15',
-  'Type 16',
-  'Type 17',
-  'Type 18',
-  'Type 19',
-  'Type 20',
+  '|11',
+  '|12',
+  '|13',
+  '|14',
+  '|15',
+  '|16',
+  '|17',
+  '|18',
+  '|19',
+  '|20',
 ];
 Balloon3 = [
-  'Type 21',
-  'Type 22',
-  'Type 23',
-  'Type 24',
-  'Type 25',
-  'Type 26',
-  'Type 27',
-  'Type 28',
-  'Type 29',
-  'Type 30',
+  '|21',
+  '|22',
+  '|23',
+  '|24',
+  '|25',
+  '|26',
+  '|27',
+  '|28',
+  '|29',
+  '|30',
 ];
 Balloon4 = [
-  'Type 31',
-  'Type 32',
-  'Type 33',
-  'Type 34',
-  'Type 35',
-  'Type 36',
-  'Type 37',
-  'Type 38',
-  'Type 39',
-  'Type 40',
+  '|31',
+  '|32',
+  '|33',
+  '|34',
+  '|35',
+  '|36',
+  '|37',
+  '|38',
+  '|39',
+  '|40',
 ];
 Balloon5 = [
-  'Type 41',
-  'Type 42',
-  'Type 43',
-  'Type 44',
-  'Type 45',
-  'Type 46',
-  'Type 47',
-  'Type 48',
-  'Type 49',
-  'Type 50',
+  '|41',
+  '|42',
+  '|43',
+  '|44',
+  '|45',
+  '|46',
+  '|47',
+  '|48',
+  '|49',
+  '|50',
 ];
 s = 350;
 async function dd(s1, s2, s3, s4) {
@@ -123,5 +112,5 @@ async function drawLCA() {
   await dd('Neckwear', 0, Neckwear, 3);
   await dd('Hand', 0, Hand, 5);
   await dd('Hat', 0, Hat, 2);
-  txt = txt.substring(0, txt.length - 1) + ']';
+  txt = txt.substring(0, txt.length - 1).replace('|', 'Type ') + ']';
 }
