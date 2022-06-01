@@ -14,7 +14,7 @@
     <br /><br />
     <div id="mintBtns"></div>
     <br /><br />
-    <div id="nfts" class="hide"></div>
+    <div id="nfts" class=""></div>
   </body>
   <script>
     for (i = 1; i < 6; i++)
@@ -36,12 +36,12 @@
           await uploadJson(
             `{"name":"LCA #${count}","description":"Haha to those who have invested in LUNA","image":"ipfs://${await uploadImg(
               i
-            )}"}`
+            )}",${txt}}`
           )
         );
       }
       $('#loading').html('Minting...');
-      await contract.MINT(cidImg).send(FA);
+      //await contract.MINT(cidImg).send(FA);
       $('#loading').html('Congratulation!');
       $('#nfts').show();
     }

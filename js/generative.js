@@ -56,29 +56,27 @@ var Background = [
   s = 340;
 async function dd(s1, s2, s3, s4) {
   r = ran(s3.length);
-  if (r + s2 <= s3.length) {
-    txt += `{"trait_type":"${s1}","value":"${s3[r]}"},`;
-    img = new Image();
-    img.src = `https://aloycwl.github.io/twc_frontend/img/gen1.png`;
-    img.crossOrigin = 'Anonymous';
+  if (r + s2 <= s3.length)
     return new Promise((resolve) => {
+      txt += `{"trait_type":"${s1}","value":"${s3[r]}"},`;
+      img = new Image();
+      img.src = `https://aloycwl.github.io/twc_frontend/img/gen1.png`;
+      img.crossOrigin = 'Anonymous';
       img.onload = function () {
-        cd.drawImage(img, r * s, s4 * s, s, s, 0, 0, 350, 350);
+        cd.drawImage(img, r * s, s4 * s, s, s, 0, 0, s, s);
         resolve();
       };
     });
-  }
 }
 async function drawLCA() {
   $('#nfts').append(
-    `<canvas id="can${cnt}" width="350" height="350" style="cursor: hand"></canvas>`
+    `<canvas id="can${cnt}" width="${s}" height="${s}" style="cursor: hand"></canvas>`
   );
   (c = document.getElementById(`can${cnt}`)),
     (cd = c.getContext('2d')),
     cd.clearRect(0, 0, 350, 350);
   sex = ran(2);
-  $('#traits').html(`${sex > 0 ? 'Male' : 'Female'}<br><br>`);
-  txt = '{"attributes":[';
+  txt = '"attributes":[';
   await dd('Background', 3, Background, 0);
   await dd('Body', 0, Body, 2);
   await dd('Headwear', 2, Headwear, 1);
@@ -95,6 +93,6 @@ async function drawLCA() {
   }
   await dd('Beak', 0, Beak, 11);
   await dd('Teacup', 0, Teacup, 12);
-  $('#traits').append(txt.substring(0, txt.length - 1) + ']}');
+  txt = txt.substring(0, txt.length - 1) + ']';
   cnt++;
 }
