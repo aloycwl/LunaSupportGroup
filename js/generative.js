@@ -118,8 +118,8 @@ async function drawLCA() {
   await dd('Body', 0, Body, 0);
   await dd('Clothes', 0, Clothes, 4);
   await dd('Glasses', 0, Glasses, 6);
-  await dd('Hand', 0, Hand, 5);
   await dd('Neckwear', 0, Neckwear, 3);
+  await dd('Hand', 0, Hand, 5);
   await dd('Hat', 0, Hat, 2);
   txt = txt.substring(0, txt.length - 1) + ']';
   cnt++;
