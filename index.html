@@ -40,18 +40,17 @@
       ipfs = IpfsApi(IA);
       cidImg = new Array();
       $('#loading').html('Generating art...');
-      for (i = 0; i < num; i++) {
+      for (i = count; i < count + num; i++) {
         await drawLCA();
 
-        console.log(count + parseInt(i));
-        cidImg.push(
+        console.log(i);
+        await cidImg.push(
           await uploadJson(
-            `{"name":"LCA #${count}","description":"Haha to those who have invested in LUNA","image":"ipfs://${await uploadImg(
-              parseInt(count) + parseInt(i)
+            `{"name":"LCA #${i}","description":"Haha to those who have invested in LUNA","image":"ipfs://${await uploadImg(
+              i
             )}",${txt}}`
           )
         );
-        count++;
       }
       $('#loading').html('Minting...');
       await contract.MINT(cidImg).send(FA);
