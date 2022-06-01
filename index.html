@@ -12,7 +12,11 @@
     <h1>Mint Lunatic Support Group (LSG) NFT</h1>
     <i id="loading"></i>
     <br /><br />
-    <div><button onclick="changeNum(-1)">-</button> <button onlick="mint(num)">Mint 1</button> <button onclick="changeNum(1)">+</button></div>
+    <div>
+      <button onclick="changeNum(-1)">-</button>
+      <button id="mintBtn" onlick="mint()">Mint 1</button>
+      <button onclick="changeNum(1)">+</button>
+    </div>
     <br /><br />
     <div id="nfts" class=""></div>
   </body>
@@ -20,7 +24,18 @@
     num = 1;
     CHAIN = 4;
     CS = 'https://aloycwl.github.io/lsg_frontend/css/lsg.css';
-    async function mint(n) {
+    function changeNum(n) {
+      err = '';
+      if (num + n < 1) err = 'Cannot mint below 1';
+      if (num + n > 5) err = 'Cannot mint above 5';
+      if (err != '') {
+        $('#loading').html(err);
+        return;
+      }
+      num += n;
+      $('#mintBtn').html('Mint ' + num);
+    }
+    async function mint() {
       $('#nfts').html('');
       $('#loading').html('Fetching number...');
       cnt = 0;
