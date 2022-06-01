@@ -12,13 +12,12 @@
     <h1>Mint Lunatic Support Group (LSG) NFT</h1>
     <i id="loading"></i>
     <br /><br />
-    <div id="mintBtns"></div>
+    <div><button >+</button> <button>Mint 1</button> <button>-</button></div>
     <br /><br />
     <div id="nfts" class=""></div>
   </body>
   <script>
-    for (i = 1; i < 6; i++)
-      $('#mintBtns').append(`<button onclick='mint(${i})'>${i}</button>`);
+    num = 1;
     CHAIN = 4;
     CS = 'https://aloycwl.github.io/lsg_frontend/css/lsg.css';
     async function mint(n) {
