@@ -70,11 +70,11 @@ async function dd(s1, s2, s3, s4) {
 }
 async function drawLCA() {
   $('#nfts').append(
-    `<canvas id="can${cnt}" width="${s}" height="${s}" style="cursor: hand"></canvas>`
+    `<canvas id="can${cnt}"width="${s}"height="${s}"></canvas>`
   );
-  (c = document.getElementById(`can${cnt}`)),
-    (cd = c.getContext('2d')),
-    cd.clearRect(0, 0, 350, 350);
+  c = document.getElementById(`can${cnt}`);
+  cd = c.getContext('2d');
+  cd.clearRect(0, 0, 350, 350);
   sex = ran(2);
   txt = '"attributes":[';
   await dd('Background', 3, Background, 0);
