@@ -4,6 +4,15 @@
     <script src="https://aloycwl.github.io/js/cdn/jquery.min.js"></script>
     <script src="https://aloycwl.github.io/js/cdn/web3.min.js"></script>
     <script src="https://aloycwl.github.io/js/cdn/web3ac.js"></script>
+    <style>
+      @font-face {
+        font-family: cartoonlsg;
+        src: url('https://aloycwl.github.io/lsg_frontend/css/cartoonfont.ttf');
+      }
+      * {
+        font-family: cartoonlsg;
+      }
+    </style>
   </head>
   <body>
     <button id="connect" onclick="start()">Connect</button>
@@ -15,6 +24,8 @@
       <button onclick="changeNum(1)">+</button>
     </div>
     <br /><br />
+    <a id="count3333"></a>
+    <br /><br />
     <div id="nfts" class=""></div>
   </body>
   <script>
@@ -24,10 +35,13 @@
       $('#mintBtn').html('Mint ' + num);
     }
     async function mint() {
+      if (Number(count) + Number(num) > 20) {
+        $('#loading').html('Max token exceeded');
+        return;
+      }
       $('#nfts').html('');
       $('#loading').html('Fetching number...');
       cnt = 0;
-      count = await contract.count().call();
       ipfs = IpfsApi(IA);
       cidImg = new Array();
       $('#loading').html('Generating art...');
@@ -75,11 +89,12 @@
         '0xF965957d44431CcDd9afFD0F5d6e9aE524FECb9b'
       );
       loaded = 1;
+      count = await contract.count().call();
+      $('#count3333').html(3333 - count + '/3333');
     }
-    
-    start();
 
     $(document).ready(function () {
+      start();
       setInterval(async function () {
         if (typeof ethereum != 'undefined') {
           d = await web3.getAccounts();
