@@ -16,7 +16,6 @@
   </head>
   <body>
     <button id="connect" onclick="start()">Connect</button>
-    <i id="loading"></i>
     <br /><br />
     <div id="root">
       <button onclick="changeNum(-1)">-</button>
@@ -36,15 +35,15 @@
     }
     async function mint() {
       if (Number(count) + Number(num) > 3333) {
-        $('#loading').html('Max token exceeded');
+        $('#count3333').html('Max token exceeded');
         return;
       }
       $('#nfts').html('');
-      $('#loading').html('Fetching number...');
+      $('#count3333').html('Fetching number...');
       cnt = 0;
       ipfs = IpfsApi(IA);
       cidImg = new Array();
-      $('#loading').html('Generating art...');
+      $('#count3333').html('Generating art...');
       for (i = count; i < Number(count) + Number(num); i++) {
         await drawLCA(i);
         cidImg.push(
@@ -55,9 +54,9 @@
           )
         );
       }
-      $('#loading').html('Minting...');
+      $('#count3333').html('Minting...');
       await contract.MINT(cidImg).send(FA);
-      $('#loading').html('Congratulation!');
+      $('#count3333').html('Congratulation!');
       $('#nfts').show();
     }
     async function start() {
