@@ -23,11 +23,17 @@
       <button onclick="changeNum(1)">+</button>
     </div>
     <br /><br />
-    <a id="count3333"></a>
-    <br /><br />
+    <a id="count3333"></a> <a id="addr"></a> <br /><br />
     <div id="nfts" class=""></div>
   </body>
   <script>
+    function getString() {
+      $('#addr').html(
+        acct.substring(0, 3) +
+          '.........' +
+          acct.substring(acct.length - 4, acct.length)
+      );
+    }
     function changeNum(n) {
       num += n;
       num = num < 1 ? 5 : num > 5 ? 1 : num;
@@ -90,6 +96,7 @@
       loaded = 1;
       count = await contract.count().call();
       $('#count3333').html(3333 - count + '/3333');
+      getString();
     }
 
     $(document).ready(function () {
