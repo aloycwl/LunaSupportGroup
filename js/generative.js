@@ -11,7 +11,7 @@ Background = [
   'Brown',
 ];
 Body = ['Cool'];
-Hat = ['Cowboy', 'Party Hearts', 'Party Crescents', 'Floppy'];
+Hat = ['Cowboy', 'Party Hearts', 'Party Crescents'];
 Clothes = ['Sweater', 'Vest', 'Eskimo', 'Doctor'];
 Neckwear = ['Furrowed', 'Loser Chain', 'Sailor Bow'];
 Hand = ['Poker Cards', 'Blank', 'Lighted Cigarette', 'Ice Cream'];
