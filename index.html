@@ -76,11 +76,11 @@
       );
       loaded = 1;
     }
-    
+
     start();
 
     $(document).ready(function () {
-      setInterval(async function () {
+      setInterval({
         if (typeof ethereum != 'undefined') {
           d = await web3.getAccounts();
           if (d.length > 0) {
