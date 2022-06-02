@@ -40,6 +40,8 @@
       $('#mintBtn').html('Mint ' + num);
     }
     async function mint() {
+      if (typeof count == 'undefined') await start();
+
       if (Number(count) + Number(num) > 3333) {
         $('#count3333').html('Max token exceeded');
         return;
@@ -98,22 +100,5 @@
       $('#count3333').html(3333 - count + '/3333');
       getString();
     }
-
-    $(document).ready(function () {
-      start();
-      setInterval(async function () {
-        if (typeof ethereum != 'undefined') {
-          d = await web3.getAccounts();
-          if (d.length > 0) {
-            $('#connect').hide();
-            $('#root').show();
-            if (loaded < 1) start();
-          } else {
-            $('#connect').show();
-            $('#root').hide();
-          }
-        }
-      }, 1000);
-    });
   </script>
 </html>
