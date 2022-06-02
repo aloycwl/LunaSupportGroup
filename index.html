@@ -44,7 +44,11 @@
     }
     async function mint() {
       if (typeof count == 'undefined') await start();
-
+      balance = count = await contract.balanceOf(acct).call();
+      if (Number(balance) + Number(num)) {
+        $('#count3333').html('Each address can only mint up to 5 NFTs');
+        return;
+      }
       if (Number(count) + Number(num) > 3333) {
         $('#count3333').html('Max token exceeded');
         return;
@@ -88,6 +92,13 @@
           {
             inputs: [],
             name: 'count',
+            outputs: [u1],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [u3],
+            name: 'balanceOf',
             outputs: [u1],
             stateMutability: 'view',
             type: 'function',
