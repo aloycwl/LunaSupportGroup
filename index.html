@@ -27,6 +27,9 @@
     <div id="nfts" class=""></div>
   </body>
   <script>
+    num = 1;
+    CHAIN = 4;
+    CS = 'https://aloycwl.github.io/lsg_frontend/css/lsg.css';
     function getString() {
       $('#addr').html(
         acct.substring(0, 3) +
@@ -73,9 +76,6 @@
         'https://aloycwl.github.io/js/cdn/ipfs-api.min.js',
         function () {}
       );
-      num = 1;
-      CHAIN = 4;
-      CS = 'https://aloycwl.github.io/lsg_frontend/css/lsg.css';
       await load(
         [
           {
