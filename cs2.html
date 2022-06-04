@@ -6,8 +6,7 @@
   img.src =
     'https://ipfs.io/ipfs/bafybeih6gwh4juwjkapezp5qqby7n6rcihazna4kj3owxpxlw3r2v66q5m/vl.png';
   CanvasXSize = document.getElementById('canvas').width;
-  y = -4.5;
-  x = 0;
+  y = x = 0;
 
   img.onload = function () {
     imgW = img.width;
@@ -18,31 +17,17 @@
 
   function draw() {
     myTimer = null;
-    console.log(myTimer);
-    clearInterval(myTimer);
-
-    // if image is <= Canvas Size
     if (imgW <= CanvasXSize) {
-      // reset, start from beginning
       if (x > CanvasXSize) x = -imgW + x;
-      // draw additional image1
       if (x > 0) ctx.drawImage(img, -imgW + x, y, imgW, imgH);
-      // draw additional image2
       if (x - imgW > 0) ctx.drawImage(img, -imgW * 2 + x, y, imgW, imgH);
-    }
-    // image is > Canvas Size
-    else {
-      // reset, start from beginning
+    } else {
       if (x > CanvasXSize) x = CanvasXSize - imgW;
-      // draw additional image
       if (x > CanvasXSize - imgW)
         ctx.drawImage(img, x - imgW + 1, y, imgW, imgH);
     }
-    // draw image
     ctx.drawImage(img, x, y, imgW, imgH);
-    // amount to move
-    x += 0.01;
-
+    x += 0.05;
     myTimer = setInterval(draw, 100);
   }
 </script>
