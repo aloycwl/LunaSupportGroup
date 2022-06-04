@@ -1,46 +1,25 @@
-<canvas id="canvas" width="800" height="200"></canvas>
+<canvas id="canvas" width="600" height="200"></canvas>
 
 <script>
-  var img = new Image();
-
+  img = new Image();
   img.crossOrigin = 'anonymous';
   img.src =
     'https://ipfs.io/ipfs/bafybeih6gwh4juwjkapezp5qqby7n6rcihazna4kj3owxpxlw3r2v66q5m/vl.png';
-  var CanvasXSize = 800;
-  var CanvasYSize = 200;
-  var scale = 1.05;
-  var y = -4.5;
-
-  var dx = 0.75;
-  var imgW;
-  var imgH;
-  var x = 0;
-  var clearX;
-  var clearY;
-  var ctx;
+  CanvasXSize = document.getElementById('canvas').width;
+  y = -4.5;
+  x = 0;
 
   img.onload = function () {
-    imgW = img.width * scale;
-    imgH = img.height * scale;
-
-    // image larger than canvas
-    if (imgW > CanvasXSize) x = CanvasXSize - imgW;
-    // image width larger than canvas
-    if (imgW > CanvasXSize) clearX = imgW;
-    else clearX = CanvasXSize;
-    // image height larger than canvas
-    if (imgH > CanvasYSize) clearY = imgH;
-    else clearY = CanvasYSize;
-
-    // get canvas context
+    imgW = img.width;
+    imgH = img.height;
     ctx = document.getElementById('canvas').getContext('2d');
-
-    // set refresh rate
-    return setInterval(draw, 30);
+    draw();
   };
 
   function draw() {
-    ctx.clearRect(0, 0, clearX, clearY); // clear the canvas
+    myTimer = null;
+    console.log(myTimer);
+    clearInterval(myTimer);
 
     // if image is <= Canvas Size
     if (imgW <= CanvasXSize) {
@@ -56,13 +35,14 @@
       // reset, start from beginning
       if (x > CanvasXSize) x = CanvasXSize - imgW;
       // draw additional image
-      if (x > CanvasXSize - imgW) 
+      if (x > CanvasXSize - imgW)
         ctx.drawImage(img, x - imgW + 1, y, imgW, imgH);
-      
     }
     // draw image
     ctx.drawImage(img, x, y, imgW, imgH);
     // amount to move
-    x += dx;
+    x += 0.01;
+
+    myTimer = setInterval(draw, 100);
   }
 </script>
