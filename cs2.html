@@ -1,0 +1,68 @@
+<canvas id="canvas" width="800" height="200"></canvas>
+
+<script>
+  var img = new Image();
+
+  img.crossOrigin = 'anonymous';
+  img.src =
+    'https://ipfs.io/ipfs/bafybeih6gwh4juwjkapezp5qqby7n6rcihazna4kj3owxpxlw3r2v66q5m/vl.png';
+  var CanvasXSize = 800;
+  var CanvasYSize = 200;
+  var scale = 1.05;
+  var y = -4.5;
+
+  var dx = 0.75;
+  var imgW;
+  var imgH;
+  var x = 0;
+  var clearX;
+  var clearY;
+  var ctx;
+
+  img.onload = function () {
+    imgW = img.width * scale;
+    imgH = img.height * scale;
+
+    // image larger than canvas
+    if (imgW > CanvasXSize) x = CanvasXSize - imgW;
+    // image width larger than canvas
+    if (imgW > CanvasXSize) clearX = imgW;
+    else clearX = CanvasXSize;
+    // image height larger than canvas
+    if (imgH > CanvasYSize) clearY = imgH;
+    else clearY = CanvasYSize;
+
+    // get canvas context
+    ctx = document.getElementById('canvas').getContext('2d');
+
+    // set refresh rate
+    return setInterval(draw, 30);
+  };
+
+  function draw() {
+    ctx.clearRect(0, 0, clearX, clearY); // clear the canvas
+
+    // if image is <= Canvas Size
+    if (imgW <= CanvasXSize) {
+      // reset, start from beginning
+      if (x > CanvasXSize) x = -imgW + x;
+      // draw additional image1
+      if (x > 0) ctx.drawImage(img, -imgW + x, y, imgW, imgH);
+      // draw additional image2
+      if (x - imgW > 0) ctx.drawImage(img, -imgW * 2 + x, y, imgW, imgH);
+    }
+    // image is > Canvas Size
+    else {
+      // reset, start from beginning
+      if (x > CanvasXSize) x = CanvasXSize - imgW;
+      // draw additional image
+      if (x > CanvasXSize - imgW) 
+        ctx.drawImage(img, x - imgW + 1, y, imgW, imgH);
+      
+    }
+    // draw image
+    ctx.drawImage(img, x, y, imgW, imgH);
+    // amount to move
+    x += dx;
+  }
+</script>
