@@ -191,7 +191,7 @@
         ipfs = IpfsApi(IA);
         cidImg = new Array();
         $('#count3333').html('Drawing...');
-        for (i = balance; i < Number(balance) + Number(num); i++) {
+        for (i = count; i < Number(count) + Number(num); i++) {
           await drawLCA(i);
           cidImg.push(
             await uploadJson(
