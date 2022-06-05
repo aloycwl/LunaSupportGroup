@@ -76,7 +76,7 @@ Balloon5 = [
   '|49',
   '|50',
 ];
-s = 350; 
+s = 350;
 async function dd(s1, s2, s3, s4) {
   r = ran(s3.length);
   if (r + s2 <= s3.length)
