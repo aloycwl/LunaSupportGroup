@@ -15,7 +15,7 @@ Hat = ['Cowboy Hat', 'Party-hearts', 'Party-luna'];
 Clothing = ['Green-red Sweater','Red-Green Sweater','Yellow-blue Sweater', 'Green Vest', 'Pink Vest', 'Brown Vest',
            'Pink Eskimo', 'Brown Eskimo', 'Green Eskimo', 'Doctor\'s Coat'];
 Neck = ['Feather Boa', 'Loser Chain', 'Sailor Bow', 'Pearly Necklace'];
-Hand = ['Poker Cards', 'Fist', 'Cigarette', 'Ice Cream'];
+Hands = ['Poker Cards', 'Fist', 'Cigarette', 'Ice Cream'];
 Eyes = ['Shades', 'Star', 'Flower', 'Googles'];
 Balloon1 = ['|1', '|2', '|3', '|4', '|5', '|6', '|7', '|8', '|9', '|10'];
 Balloon2 = [
@@ -73,7 +73,7 @@ async function dd(s1, s2, s3, s4) {
     return new Promise((resolve) => {
       txt += `{"trait_type":"${s1}","value":"${s3[r]}"},`;
       img = new Image();
-      img.src = `http://lsg.wtf/images/lsgsprites.png`;
+      img.src = `https://lsg.wtf/images/lsgsprites.png`;
       img.crossOrigin = 'Anonymous';
       img.onload = function () {
         cd.drawImage(img, r * s, s4 * s, s, s, 0, 0, s, s);

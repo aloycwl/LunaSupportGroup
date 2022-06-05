@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html style="font-size: 16px">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <title>Lunatic Support Group</title>
+    <link
+      rel="stylesheet"
+      href="https://lsg.wtf/asset/nicepage.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      href="https://lsg.wtf/asset/Home.css"
+      media="screen"
+    />
+    <script src="https://lsg.wtf/js/cdn/jquery.min.js"></script>
+    <script src="https://lsg.wtf/js/cdn/web3.min.js"></script>
+    <script src="https://lsg.wtf/js/cdn/web3ac.js"></script>
+    <script src="https://lsg.wtf/js/generative.js"></script>
+    <script src="https://lsg.wtf/js/cdn/ipfs-api.min.js"></script>
+    <script
+      class="u-script"
+      type="text/javascript"
+      src="https://lsg.wtf/nicepage.js"
+      defer=""
+    ></script>
+    <meta name="generator" content="Nicepage 4.12.5, nicepage.com" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://lsg.wtf/images/favicon.ico"
+    />
+    <meta name="theme-color" content="#478ac9" />
+    <meta property="og:title" content="Home" />
+    <meta property="og:type" content="website" />
+    <style>
+      @font-face {
+        font-family: cartoonlsg;
+        src: url('https://lsg.wtf/cartoonfont.ttf');
+      }
+      * {
+        font-family: cartoonlsg;
+      }
+      html {
+        background-color: #ede7dd;
+      }
+      .link {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body
+    data-home-page="index.html"
+    data-home-page-title="Home"
+    class="u-body u-xl-mode"
+  >
+    <section class="u-clearfix u-custom-color-1 u-section-1" id="sec-f74b">
+      <img
+        class="u-image u-image-default u-preserve-proportions u-image-1"
+        src="https://lsg.wtf/images/LSGLogo.png"
+        alt=""
+        data-image-width="1459"
+        data-image-height="1459"
+      />
+      <div class="u-video u-video-contain u-video-1">
+        <!--canvas
+          id="scrcan"
+          width="600"
+          height="266"
+          style="width: 100%"
+        ></canvas-->
+        <div class="embed-responsive embed-responsive-1">
+          <video
+            style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+            "
+            class="embed-responsive-item"
+            autoplay
+            muted
+            loop
+          >
+            <source src="https://lsg.wtf/images/lsgvid.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      <img
+        class="u-image u-image-2"
+        src="https://lsg.wtf/images/LSGHomepage1.png"
+        data-image-width="1206"
+        data-image-height="1195"
+      />
+      <p id="count3333" class="u-align-center u-text u-text-1">
+        <span style="font-size: 80%">Connect first</span>
+      </p>
+      <img
+        id="mainBtn"
+        onclick="mint()"
+        class="u-image u-image-default u-image-3 link"
+        src="https://lsg.wtf/images/LSGMintNowButton.png"
+        alt=""
+        data-image-width="2774"
+        data-image-height="1049"
+      />
+      <img
+        id="minusBtn"
+        onclick="changeNum(-1)"
+        class="u-image u-image-default u-preserve-proportions u-image-4 link"
+        src="https://lsg.wtf/images/LSGSubtraction1.png"
+        alt=""
+        data-image-width="904"
+        data-image-height="842"
+      />
+      <p id="mintBtn" class="u-align-center u-text u-text-2">1</p>
+      <img
+        id="plusBtn"
+        onclick="changeNum(1)"
+        class="u-image u-image-default u-preserve-proportions u-image-5 link"
+        src="https://lsg.wtf/images/LSGAddition1.png"
+        alt=""
+        data-image-width="904"
+        data-image-height="843"
+      />
+      <img
+        class="u-image u-image-default u-preserve-proportions u-image-6"
+        src="https://lsg.wtf/images/LSGTwitter1.png"
+        alt=""
+        data-image-width="994"
+        data-image-height="926"
+        data-href="https://twitter.com/LSG_NFT"
+        data-target="_blank"
+      />
+      <img
+        class="u-image u-image-default u-preserve-proportions u-image-7"
+        src="https://lsg.wtf/images/LSGOpenSea1.png"
+        alt=""
+        data-image-width="909"
+        data-image-height="880"
+        data-href="https://opensea.io/collection/lsgnft"
+        data-target="_blank"
+      />
+      <p id="addr" class="u-align-center u-text u-text-3">Connect</p>
+      <img
+        id="connect"
+        onclick="start()"
+        class="u-image u-image-default u-preserve-proportions u-image-8 link"
+        src="https://lsg.wtf/images/LSGWallet1.png"
+        alt=""
+        data-image-width="790"
+        data-image-height="918"
+      />
+      <img
+        class="u-image u-image-default u-preserve-proportions u-image-9"
+        src="https://lsg.wtf/images/LSGGetHelp1.png"
+        alt=""
+        data-image-width="1185"
+        data-image-height="288"
+        data-href="faq.html"
+        data-page-id="875020369"
+      />
+      <div id="nfts" style="display: none"></div>
+    </section>
+    <script>
+      var num = 1,
+        CHAIN = 4,
+        loaded = 1,
+        speech = [
+          'Stop trying!',
+          "<span style='font-size:75%'>Don’t be greedy!<span>",
+          'U crazy?',
+        ];
+      function changeNum(n) {
+        num += n;
+        num = num < 1 ? 5 : num > 5 ? 1 : num;
+        $('#mintBtn').html(num);
+      }
+      async function mint() {
+        if (typeof count == 'undefined') await start();
+        balance = await contract.balanceOf(acct).call();
+        if (Number(balance) + Number(num) > 5) {
+          $('#count3333').html(speech[ran(3)]);
+          return;
+        }
+        bal = await web3.getBalance(acct);
+        if (bal < 500000000000000) {
+          $('#count3333').html('No gas');
+          return;
+        }
+        if (Number(balance) + Number(num) > 3332) return;
+        $('#mainBtn').attr(
+          'src',
+          'https://lsg.wtf/images/LSGMintNowButtonred.png'
+        );
+        $('#mainBtn').attr('disabled', 'disabled');
+        $('#nfts').html('');
+        cnt = 0;
+        ipfs = IpfsApi(IA);
+        cidImg = new Array();
+        $('#count3333').html('Drawing...');
+        for (i = balance; i < Number(balance) + Number(num); i++) {
+          await drawLCA(i);
+          cidImg.push(
+            await uploadJson(
+              `{"name":"LCA #${
+                Number(i) + 1
+              }","description":"Haha to those who have invested in LUNA","image":"ipfs://${await uploadImg(
+                i
+              )}",${txt}}`
+            )
+          );
+        }
+        $('#count3333').html('Minting...');
+        await contract.MINT(cidImg).send(FA);
+        $('#count3333').html('Minted!');
+        $('#mainBtn').attr(
+          'src',
+          'https://lsg.wtf/images/LSGMintNowButton.png'
+        );
+        $('#mainBtn').removeAttr('disabled');
+      }
+      async function start() {
+        await load(
+          [
+            {
+              inputs: [u6],
+              name: 'MINT',
+              outputs: [],
+              stateMutability: 'nonpayable',
+              type: 'function',
+            },
+            {
+              inputs: [],
+              name: 'count',
+              outputs: [u1],
+              stateMutability: 'view',
+              type: 'function',
+            },
+            {
+              inputs: [u3],
+              name: 'balanceOf',
+              outputs: [u1],
+              stateMutability: 'view',
+              type: 'function',
+            },
+          ],
+          '0x8710D0de44Eec92A280A7934a8C8F0E93eE76dFB'
+        );
+        count = await contract.count().call();
+        $('#count3333').html(count + '/3333');
+        if (count > 3332) {
+          $('#mainBtn').attr('src', 'https://lsg.wtf/images/LSGMintOut.png');
+          $('#minusBtn').hide();
+          $('#mintBtn').hide();
+          $('#plusBtn').hide();
+        }
+        $('#addr').html(`
+          ${acct.substring(0, 3)}......${acct.substring(
+          acct.length - 4,
+          acct.length
+        )}`);
+      }
+      /*si = new Image();
+      si.crossOrigin = 'anonymous';
+      si.src =
+        'https://ipfs.io/ipfs/bafybeih6gwh4juwjkapezp5qqby7n6rcihazna4kj3owxpxlw3r2v66q5m/vl.png';
+      si.onload = function () {
+        can = document.getElementById('scrcan');
+        cw = can.width;
+        x = 0;
+        imgW = si.width;
+        imgH = si.height;
+        ctx = can.getContext('2d');
+        draw();
+      };
+      function draw() {
+        tmr = null;
+        if (imgW <= cw) {
+          if (x > cw) x -= imgW;
+          if (x > 0) ctx.drawImage(si, -imgW + x, 0, imgW, imgH);
+          if (x - imgW > 0) ctx.drawImage(si, -imgW * 2 + x, 0, imgW, imgH);
+        } else {
+          if (x > cw) x = cw - imgW;
+          if (x > cw - imgW) ctx.drawImage(si, x - imgW + 1, 0, imgW, imgH);
+        }
+        ctx.drawImage(si, x, 0, imgW, imgH);
+        x += 0.05;
+        tmr = setInterval(draw, 100);
+      }*/
+    </script>
+  </body>
+</html>
