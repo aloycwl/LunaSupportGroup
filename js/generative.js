@@ -12,8 +12,18 @@ Background = [
 ];
 Body = ['Purple'];
 Hat = ['Cowboy Hat', 'Party-hearts', 'Party-luna'];
-Clothing = ['Green-red Sweater','Red-Green Sweater','Yellow-blue Sweater', 'Green Vest', 'Pink Vest', 'Brown Vest',
-           'Pink Eskimo', 'Brown Eskimo', 'Green Eskimo', 'Doctor\'s Coat'];
+Clothing = [
+  'Green-red Sweater',
+  'Red-Green Sweater',
+  'Yellow-blue Sweater',
+  'Green Vest',
+  'Pink Vest',
+  'Brown Vest',
+  'Pink Eskimo',
+  'Brown Eskimo',
+  'Green Eskimo',
+  "Doctor's Coat",
+];
 Neck = ['Feather Boa', 'Loser Chain', 'Sailor Bow', 'Pearly Necklace'];
 Hands = ['Poker Cards', 'Fist', 'Cigarette', 'Ice Cream'];
 Eyes = ['Shades', 'Star', 'Flower', 'Googles'];
@@ -66,7 +76,7 @@ Balloon5 = [
   '|49',
   '|50',
 ];
-s = 350;
+s = 350; 
 async function dd(s1, s2, s3, s4) {
   r = ran(s3.length);
   if (r + s2 <= s3.length)
