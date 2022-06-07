@@ -11,8 +11,6 @@
     <script src="https://lsg.wtf/js/cdn/jquery.min.js"></script>
     <script src="https://lsg.wtf/js/cdn/web3.min.js"></script>
     <script src="https://lsg.wtf/js/cdn/web3ac.js"></script>
-    <script src="/js/generative.js"></script>
-    <script src="https://lsg.wtf/js/cdn/ipfs-api.min.js"></script>
     <script
       class="u-script"
       type="text/javascript"
@@ -152,31 +150,20 @@
         data-href="faq.html"
         data-page-id="875020369"
       />
-      <div id="nfts" style="display: none"></div>
     </section>
     <script>
       var num = 1,
         CHAIN = 4,
-        loaded = 1,
-        speech = [
-          'Stop trying!',
-          "<span style='font-size:75%'>Don’t be greedy!<span>",
-          'U crazy?',
-        ];
+        loaded = 1;
       function changeNum(n) {
         num += n;
-        num = num < 1 ? 5 : num > 5 ? 1 : num;
+        num = num < 1 ? 10 : num > 10 ? 1 : num;
         $('#mintBtn').html(num);
       }
       async function mint() {
         if (typeof count == 'undefined') await start();
-        balance = await contract.balanceOf(acct).call();
-        if (Number(balance) + Number(num) > 5) {
-          $('#count3333').html(speech[ran(3)]);
-          return;
-        }
         bal = await web3.getBalance(acct);
-        if (bal < 5000000000s00000) {
+        if (bal < 5000000000000000) {
           $('#count3333').html('No gas');
           return;
         }
@@ -185,38 +172,21 @@
           'src',
           'https://lsg.wtf/images/LSGMintNowButtonred.png'
         );
-        $('#mainBtn').attr('disabled', 'disabled');
-        $('#nfts').html('');
-        cnt = 0;
-        ipfs = IpfsApi(IA);
-        cidImg = new Array();
-        $('#count3333').html('Drawing...');
-        for (i = count; i < Number(count) + Number(num); i++) {
-          await drawLCA(i);
-          cidImg.push(
-            await uploadJson(
-              `{"name":"LCA #${
-                Number(i) + 1
-              }","description":"Haha to those who have invested in LUNA","image":"ipfs://${await uploadImg(
-                i
-              )}",${txt}}`
-            )
-          );
-        }
+        $('#mainBtn').removeAttr('onclick');
         $('#count3333').html('Minting...');
-        await contract.MINT(cidImg).send(FA);
+        await contract.MINT(num).send(FA);
         $('#count3333').html('Minted!');
         $('#mainBtn').attr(
           'src',
           'https://lsg.wtf/images/LSGMintNowButton.png'
         );
-        $('#mainBtn').removeAttr('disabled');
+        $('#mainBtn').attr('onclick', 'mint()');
       }
       async function start() {
         await load(
           [
             {
-              inputs: [u6],
+              inputs: [u1],
               name: 'MINT',
               outputs: [],
               stateMutability: 'nonpayable',
@@ -229,15 +199,8 @@
               stateMutability: 'view',
               type: 'function',
             },
-            {
-              inputs: [u3],
-              name: 'balanceOf',
-              outputs: [u1],
-              stateMutability: 'view',
-              type: 'function',
-            },
           ],
-          '0x8710D0de44Eec92A280A7934a8C8F0E93eE76dFB'
+          '0xb1fCF0F84CC628a8dDEdaD533F259b7A8a0B3bc6'
         );
         count = await contract.count().call();
         $('#count3333').html(count + '/3333');
