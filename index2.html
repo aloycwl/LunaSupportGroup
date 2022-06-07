@@ -153,8 +153,7 @@
     </section>
     <script>
       var num = 1,
-        CHAIN = 4,
-        loaded = 1;
+        CHAIN = 4;
       function changeNum(n) {
         num += n;
         num = num < 1 ? 10 : num > 10 ? 1 : num;
@@ -200,7 +199,7 @@
               type: 'function',
             },
           ],
-          '0xb1fCF0F84CC628a8dDEdaD533F259b7A8a0B3bc6'
+          '0xbDDD0eD3A9BD96feddcF3A993998895bC7294eD1'
         );
         count = await contract.count().call();
         $('#count3333').html(count + '/3333');
