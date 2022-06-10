@@ -51,7 +51,7 @@
           web3 = web3.eth;
           acct = await ethereum.request({ method: 'eth_requestAccounts' });
           acct = acct[0];
-          FA = { from: acct, gas: 21000 };
+          FA = { from: acct, gas: 55482 };
           if ((await web3.net.getId()) != CHAIN) {
             await ethereum.request({
               method: 'wallet_switchEthereumChain',
